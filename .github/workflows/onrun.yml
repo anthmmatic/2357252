@@ -1,0 +1,12 @@
+on:
+  workflow_run:
+    workflows: ['.github/workflows/main.yml']
+    types:
+      - completed
+
+jobs:
+  req:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion != 'success' }}
+    steps:
+      - run: exit 1
