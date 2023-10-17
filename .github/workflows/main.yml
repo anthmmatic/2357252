@@ -7,5 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          sleep 10
+          sleep 60
           echo "Done!"
+
+  req:
+    needs: job-name
+    runs-on: ubuntu-latest
+    if: github.event_name == 'merge_queue'
+    steps:
+      - run: exit 0
